@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
 
-public class MyHolidayLights extends RunningHolidayLights{
+public class MyHolidayLights implements HolidayLights{
 
+	protected ArrayList<Light> lights;
+	protected int length;
+	public int turn = -1;
+	
 	public MyHolidayLights(int length) {
-		super(length);
+		this.length = length;
 	}
 	
 	@Override
@@ -23,8 +27,6 @@ public class MyHolidayLights extends RunningHolidayLights{
 		lights.get(turn).randomChange();
 		if(turn >= this.length-1)
 			turn = -1;
-		
-		nextLvl2();
 		return lights;
 	}
 	
@@ -48,6 +50,12 @@ public class MyHolidayLights extends RunningHolidayLights{
 		MyHolidayLightsWindow frame = new MyHolidayLightsWindow(hl);
 		frame.pack();
 		frame.setVisible(true);
+	}
+
+	@Override
+	public List<Light> nextLvl3() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

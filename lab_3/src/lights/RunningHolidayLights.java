@@ -42,5 +42,17 @@ public class RunningHolidayLights implements HolidayLights {
 //		throw new RuntimeException("RunningHolidayLights.getLength() not yet implemented!");
 		return length;
 	}
+
+	@Override
+	public List<Light> nextLvl2() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Light> nextLvl3() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 						
 }

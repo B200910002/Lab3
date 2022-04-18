@@ -14,5 +14,8 @@ public interface HolidayLights {
 	 * @return appearence of lights at next time slice.
 	 */
 	public List<Light> next();
+
+	public List<Light> nextLvl2();
 	
+	public List<Light> nextLvl3();
 }

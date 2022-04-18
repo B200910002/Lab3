@@ -10,6 +10,8 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -53,7 +55,31 @@ public class MyHolidayLightsWindow extends JFrame {
 			                        System.exit(0);
 			                    }
 			                });
+		but.addKeyListener( new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getKeyCode() == KeyEvent.VK_UP) {
+		               lw.level++;
+		           }
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+	         
+	      });
 		contentPane.add(but, BorderLayout.EAST);
+		
 		
 		// makes clicking 'x' actually close on macs
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,11 +95,15 @@ public class MyHolidayLightsWindow extends JFrame {
 		private Timer timer;
 		private List<Light> lightState;
 		
+		public int level = 1;
+		
 		public LightWindow(HolidayLights hl) {
 			this.hl = hl;
 			this.timer = new Timer(MyHolidayLightsWindow.millsPerFrame, new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					update();
+					if(level > 2)
+						level = 1;
+					update(level);
 				}
 			});
 			this.lightState = hl.next();
@@ -204,8 +234,11 @@ public class MyHolidayLightsWindow extends JFrame {
 			
 		}
 		
-		private void update() {
-			this.lightState = this.hl.next();
+		private void update(int lvl) {
+			if(lvl==1)
+				this.lightState = this.hl.next();
+			else if(lvl==2)
+				this.lightState = this.hl.nextLvl2();
 			repaint();
 		}	
 }
